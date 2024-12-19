@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AddTransactionActivity : AppCompatActivity() {
@@ -69,7 +70,7 @@ class AddTransactionActivity : AppCompatActivity() {
             AppDatabase::class.java,
             "transactions").build()
 
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
             db.transactionDao().insertAll(transaction)
             finish()
         }

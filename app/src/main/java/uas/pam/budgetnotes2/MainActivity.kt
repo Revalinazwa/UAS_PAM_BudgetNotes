@@ -8,17 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var transaction: List<Transaction>
+    private lateinit var deletedTransaction: Transaction
+    private lateinit var transactions: List<Transaction>
+    private lateinit var oldTransactions: List<Transaction>
     private lateinit var transactionAdapter: TransactionAdapter
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var db: AppDatabase
@@ -30,9 +32,9 @@ class MainActivity : AppCompatActivity() {
 
         val addButton = findViewById<FloatingActionButton>(R.id.addButton)
 
-        transaction = arrayListOf()
+        transactions = arrayListOf()
 
-        transactionAdapter = TransactionAdapter(transaction)
+        transactionAdapter = TransactionAdapter(transactions)
         linearLayoutManager = LinearLayoutManager(this)
 
         db = Room.databaseBuilder(this,
@@ -43,6 +45,24 @@ class MainActivity : AppCompatActivity() {
             adapter = transactionAdapter
             layoutManager = linearLayoutManager
         }
+
+        // Geser untuk menghapus transaksi
+        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                deleteTransaction(transactions[viewHolder.adapterPosition])
+            }
+        }
+
+        val swipeHelper = ItemTouchHelper(itemTouchHelper)
+        swipeHelper.attachToRecyclerView(findViewById(R.id.recycleview))
 
         addButton.setOnClickListener{
            val intent = Intent(this, AddTransactionActivity::class.java)
@@ -57,23 +77,36 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchAll() {
-        lifecycleScope.launch {
-            transaction = db.transactionDao().getAll()
-            runOnUiThread {
+        lifecycleScope.launch(Dispatchers.IO) {
+            transactions = db.transactionDao().getAll()
+            withContext(Dispatchers.Main) {
                 updateDashboard()
-                transactionAdapter.setData(transaction)
+                transactionAdapter.setData(transactions)
             }
         }
     }
 
     private fun updateDashboard(){
-        val totalAmount = transaction.map { it.amount }.sum()
-        val budgetAmount = transaction.filter { it.amount > 0 }.map { it.amount }.sum()
+        val totalAmount = transactions.sumOf { it.amount }
+        val budgetAmount = transactions.filter { it.amount > 0 }.map { it.amount }.sum()
         val expenseAmount = totalAmount - budgetAmount
 
-        findViewById<TextView>(R.id.balance).text = "Rp%.2f".format(totalAmount)
-        findViewById<TextView>(R.id.budget).text = "Rp%.2f".format(budgetAmount)
-        findViewById<TextView>(R.id.expense).text = "Rp%.2f".format(expenseAmount)
+        findViewById<TextView>(R.id.balance).text = getString(R.string.format_currency, totalAmount)
+        findViewById<TextView>(R.id.budget).text = getString(R.string.format_currency, budgetAmount)
+        findViewById<TextView>(R.id.expense).text = getString(R.string.format_currency, expenseAmount)
+    }
+
+    private fun deleteTransaction(transaction: Transaction){
+        deletedTransaction = transaction
+        oldTransactions = transactions
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            db.transactionDao().delete(transaction)
+            transactions = transactions.filter { it.id != transaction.id }
+            withContext(Dispatchers.Main){
+               updateDashboard()
+            }
+        }
     }
 
     override fun onResume() {
