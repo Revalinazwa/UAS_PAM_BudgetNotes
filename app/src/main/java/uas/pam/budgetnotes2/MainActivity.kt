@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         snackbar.setAction("Pulihkan"){
             undoDelete()
         }
-            .setActionTextColor(ContextCompat.getColor(this, R.color.red))
+            .setActionTextColor(ContextCompat.getColor(this, R.color.white))
             .setTextColor(ContextCompat.getColor(this, R.color.white))
             .show()
     }
