@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D9EAFD"
     tools:context=".AddTransactionActivity">
 
     <ImageButton
@@ -42,6 +43,7 @@
                 android:drawableStart="@drawable/label_selector"
                 android:drawablePadding="12dp"
                 android:maxLines="1"
+                android:background="@color/white"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -62,6 +64,7 @@
                 android:drawableStart="@drawable/money_selector"
                 android:drawablePadding="12dp"
                 android:maxLines="1"
+                android:background="@color/white"
                 android:inputType="numberDecimal|numberSigned"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -82,6 +85,7 @@
                 android:drawableStart="@drawable/description_selector"
                 android:drawablePadding="12dp"
                 android:maxLines="1"
+                android:background="@color/white"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +97,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:padding="12dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@color/colorPrimary"
             android:textColor="@android:color/white"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

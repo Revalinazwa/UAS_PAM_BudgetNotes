@@ -2,11 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#789DBC</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="textMain">#292929</color>
     <color name="green">#43A047</color>
     <color name="red">#E53935</color>
-    <color name="pesanHapus">#00BCD4</color>
+    <color name="blue">#95B5D3FF</color>
 </resources>

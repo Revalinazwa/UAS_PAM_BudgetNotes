@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:background="#D9EAFD">
 
         <LinearLayout
             android:id="@+id/balance_layout"
@@ -111,7 +112,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/recyclerview_title"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:background="#F8FAFC"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addButton"
@@ -121,7 +123,7 @@
             android:layout_alignParentRight="true"
             android:layout_margin="10dp"
             android:src="@drawable/ic_add"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorPrimary"
             app:tint="@color/white"
             app:borderWidth="0dp"/>
     </RelativeLayout>
