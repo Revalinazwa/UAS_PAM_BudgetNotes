@@ -1,5 +1,6 @@
 package uas.pam.budgetnotes2
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,12 @@ class TransactionAdapter(private var transaction : List<Transaction>) :
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.red))
         }
         holder.label.text = transaction.label
+
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, DetailedActivity::class.java)
+            intent.putExtra("transaction", transaction)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

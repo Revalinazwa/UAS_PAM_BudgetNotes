@@ -1,6 +1,9 @@
 package uas.pam.budgetnotes2
 
+import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DetailedActivity : AppCompatActivity() {
+    private lateinit var transaction: Transaction
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,15 +33,35 @@ class DetailedActivity : AppCompatActivity() {
         val labelLayout = findViewById<TextInputLayout>(R.id.labelLayout)
         val amountLayout = findViewById<TextInputLayout>(R.id.amountLayout)
         val closeButton = findViewById<ImageButton>(R.id.closeButton)
+        val rootView = findViewById<View>(R.id.rootView)
+
+        var transaction = intent.getSerializableExtra("transaction") as Transaction
+
+        labelInput.setText(transaction.label)
+        amountInput.setText(transaction.amount.toString())
+        descriptionInput.setText(transaction.description)
+
+        rootView.setOnClickListener {
+            this.window.decorView.clearFocus()
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+        }
 
         labelInput.addTextChangedListener {
+           updateTransaction.visibility = View.VISIBLE
             if (it!!.count() > 0)
                 labelLayout.error = null
         }
 
         amountInput.addTextChangedListener {
+            updateTransaction.visibility = View.VISIBLE
             if (it!!.count() > 0)
                 amountLayout.error = null
+        }
+
+        descriptionInput.addTextChangedListener {
+            updateTransaction.visibility = View.VISIBLE
         }
 
         updateTransaction.setOnClickListener{
@@ -49,7 +74,7 @@ class DetailedActivity : AppCompatActivity() {
             else if (amount == null)
                 amountLayout.error = "Mohon isi harga"
             else{
-                val transaction = Transaction(0, label, amount, description)
+                val transaction = Transaction(transaction.id, label, amount, description)
                 update(transaction)
             }
         }
@@ -58,7 +83,7 @@ class DetailedActivity : AppCompatActivity() {
             finish()
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rootView)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

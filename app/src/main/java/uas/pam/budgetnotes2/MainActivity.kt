@@ -113,8 +113,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSnackBar(){
         val view = findViewById<View>(R.id.coordinator)
-        val snackbar = Snackbar.make(view, "Transaction deleted!", Snackbar.LENGTH_LONG)
-        snackbar.setAction("Undo"){
+        val snackbar = Snackbar.make(view, "Transaksi berhasil dihapus!", Snackbar.LENGTH_LONG)
+        snackbar.setAction("Pulihkan"){
             undoDelete()
         }
             .setActionTextColor(ContextCompat.getColor(this, R.color.red))
