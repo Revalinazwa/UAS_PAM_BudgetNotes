@@ -2,9 +2,11 @@ package uas.pam.budgetnotes2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -69,7 +72,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.coordinator)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -96,6 +99,29 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.expense).text = getString(R.string.format_currency, expenseAmount)
     }
 
+    private fun undoDelete(){
+        lifecycleScope.launch(Dispatchers.IO) {
+            db.transactionDao().insertAll(deletedTransaction)
+            transactions = oldTransactions
+
+            withContext(Dispatchers.Main){
+                transactionAdapter.setData(transactions)
+                updateDashboard()
+            }
+        }
+    }
+
+    private fun showSnackBar(){
+        val view = findViewById<View>(R.id.coordinator)
+        val snackbar = Snackbar.make(view, "Transaction deleted!", Snackbar.LENGTH_LONG)
+        snackbar.setAction("Undo"){
+            undoDelete()
+        }
+            .setActionTextColor(ContextCompat.getColor(this, R.color.red))
+            .setTextColor(ContextCompat.getColor(this, R.color.white))
+            .show()
+    }
+
     private fun deleteTransaction(transaction: Transaction){
         deletedTransaction = transaction
         oldTransactions = transactions
@@ -104,7 +130,9 @@ class MainActivity : AppCompatActivity() {
             db.transactionDao().delete(transaction)
             transactions = transactions.filter { it.id != transaction.id }
             withContext(Dispatchers.Main){
-               updateDashboard()
+                updateDashboard()
+                transactionAdapter.setData(transactions)
+                showSnackBar()
             }
         }
     }
