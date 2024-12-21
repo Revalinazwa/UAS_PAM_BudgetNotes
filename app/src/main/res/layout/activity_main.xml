@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sisa Saldo"
+                android:text="@string/sisa_saldo"
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textSize="20sp"/>
@@ -31,7 +31,7 @@
                 android:id="@+id/balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp50000"
+                android:text="@string/rp50000"
                 android:textSize="32sp"
                 android:textStyle="bold"/>
         </LinearLayout>
@@ -49,7 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginBottom="10dp"
+                android:baselineAligned="false">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,14 +61,14 @@
                         android:id="@+id/budget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rp60000"
+                        android:text="@string/rp60000"
                         android:textStyle="bold"
                         android:textSize="26sp"
                         android:textColor="@color/green"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pemasukan"
+                        android:text="@string/pemasukan"
                         android:textSize="14sp"
                         android:textAllCaps="true"/>
                 </LinearLayout>
@@ -81,14 +82,14 @@
                         android:id="@+id/expense"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Rp60000"
+                        android:text="@string/rp60000"
                         android:textStyle="bold"
                         android:textSize="26sp"
                         android:textColor="@color/red"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pengeluaran"
+                        android:text="@string/pengeluaran"
                         android:textSize="14sp"
                         android:textAllCaps="true"/>
                 </LinearLayout>
@@ -99,7 +100,7 @@
             android:id="@+id/recyclerview_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Transaksi"
+            android:text="@string/transaksi"
             android:textStyle="bold"
             android:textSize="14sp"
             android:textAllCaps="true"
@@ -120,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_margin="10dp"
             android:src="@drawable/ic_add"
             android:backgroundTint="@color/colorPrimary"

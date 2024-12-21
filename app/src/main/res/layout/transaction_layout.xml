@@ -11,7 +11,7 @@
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pepaya"
+        android:text="@string/pepaya"
         android:textSize="20sp"
         android:layout_marginStart="6dp"
         android:layout_weight="1"/>
@@ -21,5 +21,5 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:layout_marginEnd="12dp"
-        android:text="Rp3000"/>
+        android:text="@string/rp3000"/>
 </LinearLayout>

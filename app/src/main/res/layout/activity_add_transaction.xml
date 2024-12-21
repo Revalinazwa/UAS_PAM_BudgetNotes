@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:hint="Nama Transaksi"
+            android:hint="@string/nama_transaksi"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:hint="Harga"
+            android:hint="@string/harga_rp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -75,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:hint="Deskripsi"
+            android:hint="@string/deskripsi"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +93,7 @@
             android:id="@+id/addTransaction"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tambah Transaksi"
+            android:text="@string/tambah_transaksi"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:padding="12dp"
