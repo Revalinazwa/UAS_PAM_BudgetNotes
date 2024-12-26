@@ -4,9 +4,9 @@
     <string name="sisa_saldo">Sisa Saldo</string>
     <string name="rp50000">Rp50000</string>
     <string name="rp60000">Rp60000</string>
-    <string name="pemasukan">Pemasukan</string>
-    <string name="pengeluaran">Pengeluaran</string>
-    <string name="transaksi">Transaksi</string>
+    <string name="pemasukan">Total Pemasukan</string>
+    <string name="pengeluaran">Total Pengeluaran</string>
+    <string name="transaksi">Daftar Transaksi</string>
     <string name="nama_transaksi">Nama transaksi</string>
     <string name="harga_rp">Harga (Rp)</string>
     <string name="deskripsi">Deskripsi</string>

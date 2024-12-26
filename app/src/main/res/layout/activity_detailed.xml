@@ -5,7 +5,7 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D9EAFD"
+    android:background="@color/lightBlue"
     tools:context=".DetailedActivity">
 
     <ImageButton
@@ -46,7 +46,7 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textSize="28sp" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +68,7 @@
                 android:background="@color/white"
                 android:inputType="numberDecimal|numberSigned"
                 android:maxLines="1"
-                android:textSize="28sp" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -90,10 +90,8 @@
                 android:background="@color/white"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textSize="28sp" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
     </LinearLayout>
 
     <Button

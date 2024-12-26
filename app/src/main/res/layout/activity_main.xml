@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity"
-        android:background="#D9EAFD">
+        android:background="@color/lightBlue">
 
         <LinearLayout
             android:id="@+id/balance_layout"
@@ -63,14 +63,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/rp60000"
                         android:textStyle="bold"
-                        android:textSize="26sp"
-                        android:textColor="@color/green"/>
+                        android:textSize="24sp"
+                        android:textColor="@color/colorPrimaryDark"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/pemasukan"
-                        android:textSize="14sp"
-                        android:textAllCaps="true"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -84,14 +83,13 @@
                         android:layout_height="wrap_content"
                         android:text="@string/rp60000"
                         android:textStyle="bold"
-                        android:textSize="26sp"
+                        android:textSize="24sp"
                         android:textColor="@color/red"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/pengeluaran"
-                        android:textSize="14sp"
-                        android:textAllCaps="true"/>
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -102,7 +100,7 @@
             android:layout_height="wrap_content"
             android:text="@string/transaksi"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textAllCaps="true"
             android:layout_below="@id/dashboard"
             android:layout_marginTop="12dp"
