@@ -98,21 +98,38 @@
             android:id="@+id/recyclerview_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/transaksi"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textAllCaps="true"
             android:layout_below="@id/dashboard"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="10dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/transaksi"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+<!--        ini buat lihat grafik-->
+        <Button
+            android:id="@+id/viewChartButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/recyclerview_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="9dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Lihat Grafik"
+            android:textColor="@color/white" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/recyclerview_title"
-            android:layout_margin="10dp"
-            android:background="#F8FAFC"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="#F8FAFC" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/addButton"

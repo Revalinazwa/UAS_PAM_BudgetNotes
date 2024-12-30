@@ -3,6 +3,7 @@ package uas.pam.budgetnotes2
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val addButton = findViewById<FloatingActionButton>(R.id.addButton)
+        val viewChartButton = findViewById<Button>(R.id.viewChartButton)
 
         transactions = arrayListOf()
 
@@ -69,6 +71,12 @@ class MainActivity : AppCompatActivity() {
 
         addButton.setOnClickListener{
            val intent = Intent(this, AddTransactionActivity::class.java)
+            startActivity(intent)
+        }
+
+        //add viewChartButton
+        viewChartButton.setOnClickListener {
+            val intent = Intent(this, ChartActivity::class.java)
             startActivity(intent)
         }
 
